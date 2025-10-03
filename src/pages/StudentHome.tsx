@@ -5,7 +5,7 @@ import { Progress } from '@/components/ui/progress'
 import { useAuth } from '@/hooks/useAuth'
 import { useGridProgress } from '@/hooks/useGridProgress'
 import { useStudentJourney } from '@/hooks/useStudentJourney'
-import { Calculator, Target, Trophy, BarChart3, Play, BookOpen, LogOut } from 'lucide-react'
+import { Calculator, Target, Trophy, BarChart3, Play, BookOpen, LogOut, Star, Sparkles, Clock, Users, Award } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { ProgressGridModal } from '@/components/student/ProgressGridModal'
 
@@ -130,6 +130,151 @@ export function StudentHome({ onStartPlacement, onStartPractice, onViewProgress,
             </Card>
           )}
 
+          {/* Additional cards to fill empty space when only placement test is shown */}
+          {shouldShowPlacement && !canStartPractice && (
+            <>
+              {/* Fun Math Facts Card */}
+              <Card className="backdrop-blur-sm bg-white/80 border-white/20 hover:bg-white/90 transition-colors">
+                <CardHeader>
+                  <CardTitle className="text-lg font-semibold flex items-center gap-2">
+                    <Star className="h-5 w-5 text-yellow-500" />
+                    Fun Math Facts
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="bg-yellow-50 rounded-lg p-3">
+                      <p className="text-sm text-yellow-800">
+                        🧮 Did you know? 7 × 8 = 56 is one of the trickiest multiplication facts!
+                      </p>
+                    </div>
+                    <div className="bg-blue-50 rounded-lg p-3">
+                      <p className="text-sm text-blue-800">
+                        ⚡ Quick tip: Any number × 10 = just add a zero at the end!
+                      </p>
+                    </div>
+                    <div className="bg-green-50 rounded-lg p-3">
+                      <p className="text-sm text-green-800">
+                        🎯 Practice makes perfect! The more you practice, the faster you'll get!
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* What You'll Learn Card */}
+              <Card className="backdrop-blur-sm bg-white/80 border-white/20 hover:bg-white/90 transition-colors">
+                <CardHeader>
+                  <CardTitle className="text-lg font-semibold flex items-center gap-2">
+                    <Award className="h-5 w-5 text-green-500" />
+                    What You'll Learn
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span className="text-sm text-muted-foreground">Master all multiplication facts 1-12</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span className="text-sm text-muted-foreground">Build speed and accuracy</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span className="text-sm text-muted-foreground">Track your progress with fun games</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span className="text-sm text-muted-foreground">Earn achievements and rewards</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Encouragement Card */}
+              <Card className="backdrop-blur-sm bg-white/80 border-white/20 hover:bg-white/90 transition-colors">
+                <CardHeader>
+                  <CardTitle className="text-lg font-semibold flex items-center gap-2">
+                    <Sparkles className="h-5 w-5 text-purple-500" />
+                    You've Got This!
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-center space-y-3">
+                    <div className="text-4xl mb-2">🌟</div>
+                    <p className="text-sm text-muted-foreground">
+                      Every math wizard started with their first spell!
+                    </p>
+                    <div className="text-4xl mb-2">🎉</div>
+                    <p className="text-sm text-muted-foreground">
+                      Mistakes are just learning opportunities in disguise!
+                    </p>
+                    <div className="text-4xl mb-2">🚀</div>
+                    <p className="text-sm text-muted-foreground">
+                      Ready to unlock your multiplication superpowers?
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* How It Works Card */}
+              <Card className="backdrop-blur-sm bg-white/80 border-white/20 hover:bg-white/90 transition-colors">
+                <CardHeader>
+                  <CardTitle className="text-lg font-semibold flex items-center gap-2">
+                    <Clock className="h-5 w-5 text-blue-500" />
+                    How It Works
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-xs font-bold">1</div>
+                      <div>
+                        <p className="text-sm font-medium text-muted-foreground">Take Placement Test</p>
+                        <p className="text-xs text-muted-foreground">We'll find your perfect starting level</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-xs font-bold">2</div>
+                      <div>
+                        <p className="text-sm font-medium text-muted-foreground">Practice & Learn</p>
+                        <p className="text-xs text-muted-foreground">Work on problems at your level</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-xs font-bold">3</div>
+                      <div>
+                        <p className="text-sm font-medium text-muted-foreground">Track Progress</p>
+                        <p className="text-xs text-muted-foreground">Watch your skills improve over time</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Community Stats Card */}
+              <Card className="backdrop-blur-sm bg-white/80 border-white/20 hover:bg-white/90 transition-colors">
+                <CardHeader>
+                  <CardTitle className="text-lg font-semibold flex items-center gap-2">
+                    <Users className="h-5 w-5 text-orange-500" />
+                    Join the Community
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-center space-y-3">
+                    <div className="text-2xl font-bold text-primary">10,000+</div>
+                    <p className="text-sm text-muted-foreground">Students learning with us</p>
+                    <div className="text-2xl font-bold text-primary">95%</div>
+                    <p className="text-sm text-muted-foreground">Improve their math skills</p>
+                    <div className="text-2xl font-bold text-primary">4.8★</div>
+                    <p className="text-sm text-muted-foreground">Average rating from students</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </>
+          )}
+
           {/* Practice Session - Primary action after placement */}
           {canStartPractice && (
             <Card className="backdrop-blur-sm bg-white/80 border-white/20 hover:bg-white/90 transition-colors">
@@ -210,6 +355,37 @@ export function StudentHome({ onStartPlacement, onStartPractice, onViewProgress,
                 </div>
               </CardContent>
             </Card>
+          </div>
+        )}
+
+        {/* Bottom encouragement section for placement test only */}
+        {shouldShowPlacement && !canStartPractice && (
+          <div className="mt-8">
+            <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg p-8 text-center">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <Sparkles className="h-8 w-8 text-primary" />
+                <h3 className="text-2xl font-bold text-primary">Ready to Begin Your Journey?</h3>
+                <Sparkles className="h-8 w-8 text-primary" />
+              </div>
+              <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Join thousands of students who have already discovered the magic of multiplication! 
+                Your adventure starts with just one click. Take the placement test to unlock your personalized learning path.
+              </p>
+              <div className="flex items-center justify-center gap-8 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <span>Personalized Learning</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span>Fun & Engaging</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                  <span>Track Progress</span>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
