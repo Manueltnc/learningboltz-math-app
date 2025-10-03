@@ -1,4 +1,4 @@
-// Unified API Client for Math Times Tables App
+// Unified API Client for Multiplication Wizard App
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import type {
   MathProgress,

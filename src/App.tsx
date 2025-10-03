@@ -21,7 +21,7 @@ function App() {
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-primary/10 via-secondary/10 to-primary/20">
         <div className="text-center">
           <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto mb-4" />
-          <p className="text-muted-foreground">Loading Math Times Tables...</p>
+          <p className="text-muted-foreground">Loading Multiplication Wizard...</p>
         </div>
       </div>
     )

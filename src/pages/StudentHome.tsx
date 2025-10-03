@@ -55,8 +55,9 @@ export function StudentHome({ onStartPlacement, onStartPractice, onViewProgress,
               <Calculator className="h-6 w-6 text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-primary">Math Times Tables</h1>
-              <p className="text-muted-foreground">Welcome back, {displayName}!</p>
+              <h1 className="text-2xl font-bold text-primary">Multiplication Wizard</h1>
+              <p className="text-muted-foreground italic">A Learning Boltz Experience</p>
+              <p className="text-sm text-muted-foreground">Welcome back, {displayName}!</p>
             </div>
           </div>
           <Button onClick={onLogout} variant="outline" size="sm">

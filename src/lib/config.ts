@@ -1,4 +1,4 @@
-// Configuration for Math Times Tables App
+// Configuration for Multiplication Wizard App
 
 export const PLACEMENT_CONFIG = {
   // Questions per grade level

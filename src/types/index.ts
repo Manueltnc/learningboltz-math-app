@@ -1,4 +1,4 @@
-// Shared type definitions for Math Times Tables App
+// Shared type definitions for Multiplication Wizard App
 
 export interface MathProblem {
   id: string

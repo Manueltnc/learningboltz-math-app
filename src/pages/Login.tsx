@@ -20,8 +20,9 @@ export function LoginPage({ onLogin }: LoginPageProps) {
               <Calculator className="h-8 w-8 text-primary" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-primary">Math Times Tables</h1>
-              <p className="text-muted-foreground">Master multiplication with confidence</p>
+              <h1 className="text-3xl font-bold text-primary">Multiplication Wizard</h1>
+              <p className="text-muted-foreground italic">A Learning Boltz Experience</p>
+              <p className="text-sm text-muted-foreground">Master multiplication with confidence</p>
             </div>
           </div>
           <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
