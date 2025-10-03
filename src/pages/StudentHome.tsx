@@ -107,176 +107,140 @@ export function StudentHome({ onStartPlacement, onStartPractice, onViewProgress,
           </div>
         )}
 
-        {/* Action Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Placement Test - Only show if needed */}
-          {shouldShowPlacement && (
+        {/* Placement Test Card - Full width when needed */}
+        {shouldShowPlacement && (
+          <div className="mb-8">
             <Card className="backdrop-blur-sm bg-white/80 border-white/20 hover:bg-white/90 transition-colors">
               <CardHeader>
-                <CardTitle className="text-lg font-semibold flex items-center gap-2">
-                  <BookOpen className="h-5 w-5 text-primary" />
+                <CardTitle className="text-2xl font-bold flex items-center gap-3">
+                  <BookOpen className="h-8 w-8 text-primary" />
                   Placement Test
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-4">
-                  Take a placement test to determine your starting level and create your personalized learning path.
-                </p>
-                <Button onClick={() => onStartPlacement('placement')} className="w-full">
-                  <Play className="h-4 w-4 mr-2" />
-                  Start Placement Test
-                </Button>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+                  <div>
+                    <p className="text-lg text-muted-foreground mb-6">
+                      Take a placement test to determine your starting level and create your personalized learning path. 
+                      This helps us understand your current skills and provide you with the perfect challenges to help you grow!
+                    </p>
+                    <Button onClick={() => onStartPlacement('placement')} className="w-full lg:w-auto" size="lg">
+                      <Play className="h-5 w-5 mr-2" />
+                      Start Placement Test
+                    </Button>
+                  </div>
+                  <div className="flex justify-center lg:justify-end">
+                    <div className="text-6xl">🧙‍♂️</div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
-          )}
+          </div>
+        )}
 
-          {/* Additional cards to fill empty space when only placement test is shown */}
-          {shouldShowPlacement && !canStartPractice && (
-            <>
-              {/* Fun Math Facts Card */}
-              <Card className="backdrop-blur-sm bg-white/80 border-white/20 hover:bg-white/90 transition-colors">
-                <CardHeader>
-                  <CardTitle className="text-lg font-semibold flex items-center gap-2">
-                    <Star className="h-5 w-5 text-yellow-500" />
-                    Fun Math Facts
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="bg-yellow-50 rounded-lg p-3">
-                      <p className="text-sm text-yellow-800">
-                        🧮 Did you know? 7 × 8 = 56 is one of the trickiest multiplication facts!
-                      </p>
-                    </div>
-                    <div className="bg-blue-50 rounded-lg p-3">
-                      <p className="text-sm text-blue-800">
-                        ⚡ Quick tip: Any number × 10 = just add a zero at the end!
-                      </p>
-                    </div>
-                    <div className="bg-green-50 rounded-lg p-3">
-                      <p className="text-sm text-green-800">
-                        🎯 Practice makes perfect! The more you practice, the faster you'll get!
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* What You'll Learn Card */}
-              <Card className="backdrop-blur-sm bg-white/80 border-white/20 hover:bg-white/90 transition-colors">
-                <CardHeader>
-                  <CardTitle className="text-lg font-semibold flex items-center gap-2">
-                    <Award className="h-5 w-5 text-green-500" />
-                    What You'll Learn
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm text-muted-foreground">Master all multiplication facts 1-12</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm text-muted-foreground">Build speed and accuracy</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm text-muted-foreground">Track your progress with fun games</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm text-muted-foreground">Earn achievements and rewards</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Encouragement Card */}
-              <Card className="backdrop-blur-sm bg-white/80 border-white/20 hover:bg-white/90 transition-colors">
-                <CardHeader>
-                  <CardTitle className="text-lg font-semibold flex items-center gap-2">
-                    <Sparkles className="h-5 w-5 text-purple-500" />
-                    You've Got This!
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-center space-y-3">
-                    <div className="text-4xl mb-2">🌟</div>
-                    <p className="text-sm text-muted-foreground">
-                      Every math wizard started with their first spell!
-                    </p>
-                    <div className="text-4xl mb-2">🎉</div>
-                    <p className="text-sm text-muted-foreground">
-                      Mistakes are just learning opportunities in disguise!
-                    </p>
-                    <div className="text-4xl mb-2">🚀</div>
-                    <p className="text-sm text-muted-foreground">
-                      Ready to unlock your multiplication superpowers?
+        {/* Filler Cards - Second row when placement test is shown */}
+        {shouldShowPlacement && !canStartPractice && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Fun Math Facts Card */}
+            <Card className="backdrop-blur-sm bg-white/80 border-white/20 hover:bg-white/90 transition-colors">
+              <CardHeader>
+                <CardTitle className="text-lg font-semibold flex items-center gap-2">
+                  <Star className="h-5 w-5 text-yellow-500" />
+                  Fun Math Facts
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  <div className="bg-yellow-50 rounded-lg p-3">
+                    <p className="text-sm text-yellow-800">
+                      🧮 Did you know? 7 × 8 = 56 is one of the trickiest multiplication facts!
                     </p>
                   </div>
-                </CardContent>
-              </Card>
+                  <div className="bg-blue-50 rounded-lg p-3">
+                    <p className="text-sm text-blue-800">
+                      ⚡ Quick tip: Any number × 10 = just add a zero at the end!
+                    </p>
+                  </div>
+                  <div className="bg-green-50 rounded-lg p-3">
+                    <p className="text-sm text-green-800">
+                      🎯 Practice makes perfect! The more you practice, the faster you'll get!
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
 
-              {/* How It Works Card */}
-              <Card className="backdrop-blur-sm bg-white/80 border-white/20 hover:bg-white/90 transition-colors">
-                <CardHeader>
-                  <CardTitle className="text-lg font-semibold flex items-center gap-2">
-                    <Clock className="h-5 w-5 text-blue-500" />
-                    How It Works
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-xs font-bold">1</div>
-                      <div>
-                        <p className="text-sm font-medium text-muted-foreground">Take Placement Test</p>
-                        <p className="text-xs text-muted-foreground">We'll find your perfect starting level</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-xs font-bold">2</div>
-                      <div>
-                        <p className="text-sm font-medium text-muted-foreground">Practice & Learn</p>
-                        <p className="text-xs text-muted-foreground">Work on problems at your level</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-xs font-bold">3</div>
-                      <div>
-                        <p className="text-sm font-medium text-muted-foreground">Track Progress</p>
-                        <p className="text-xs text-muted-foreground">Watch your skills improve over time</p>
-                      </div>
+            {/* What You'll Learn Card */}
+            <Card className="backdrop-blur-sm bg-white/80 border-white/20 hover:bg-white/90 transition-colors">
+              <CardHeader>
+                <CardTitle className="text-lg font-semibold flex items-center gap-2">
+                  <Award className="h-5 w-5 text-green-500" />
+                  What You'll Learn
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <span className="text-sm text-muted-foreground">Master all multiplication facts 1-12</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <span className="text-sm text-muted-foreground">Build speed and accuracy</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <span className="text-sm text-muted-foreground">Track your progress with fun games</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <span className="text-sm text-muted-foreground">Earn achievements and rewards</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* How It Works Card */}
+            <Card className="backdrop-blur-sm bg-white/80 border-white/20 hover:bg-white/90 transition-colors">
+              <CardHeader>
+                <CardTitle className="text-lg font-semibold flex items-center gap-2">
+                  <Clock className="h-5 w-5 text-blue-500" />
+                  How It Works
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-xs font-bold">1</div>
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground">Take Placement Test</p>
+                      <p className="text-xs text-muted-foreground">We'll find your perfect starting level</p>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-
-              {/* Community Stats Card */}
-              <Card className="backdrop-blur-sm bg-white/80 border-white/20 hover:bg-white/90 transition-colors">
-                <CardHeader>
-                  <CardTitle className="text-lg font-semibold flex items-center gap-2">
-                    <Users className="h-5 w-5 text-orange-500" />
-                    Join the Community
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-center space-y-3">
-                    <div className="text-2xl font-bold text-primary">10,000+</div>
-                    <p className="text-sm text-muted-foreground">Students learning with us</p>
-                    <div className="text-2xl font-bold text-primary">95%</div>
-                    <p className="text-sm text-muted-foreground">Improve their math skills</p>
-                    <div className="text-2xl font-bold text-primary">4.8★</div>
-                    <p className="text-sm text-muted-foreground">Average rating from students</p>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-xs font-bold">2</div>
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground">Practice & Learn</p>
+                      <p className="text-xs text-muted-foreground">Work on problems at your level</p>
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
-            </>
-          )}
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-xs font-bold">3</div>
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground">Track Progress</p>
+                      <p className="text-xs text-muted-foreground">Watch your skills improve over time</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
-          {/* Practice Session - Primary action after placement */}
-          {canStartPractice && (
+        {/* Regular Action Cards for when practice is available */}
+        {canStartPractice && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Practice Session - Primary action after placement */}
             <Card className="backdrop-blur-sm bg-white/80 border-white/20 hover:bg-white/90 transition-colors">
               <CardHeader>
                 <CardTitle className="text-lg font-semibold flex items-center gap-2">
@@ -297,7 +261,6 @@ export function StudentHome({ onStartPlacement, onStartPractice, onViewProgress,
                 </Button>
               </CardContent>
             </Card>
-          )}
 
           {/* Progress Grid - Only show when practice is ready */}
           {canStartPractice && (
@@ -321,7 +284,8 @@ export function StudentHome({ onStartPlacement, onStartPractice, onViewProgress,
               </CardContent>
             </Card>
           )}
-        </div>
+          </div>
+        )}
 
         {/* Quick Stats */}
         {progress && (
