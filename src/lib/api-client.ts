@@ -132,9 +132,9 @@ export class UnifiedApiClient {
       .from('math_grid_progress')
       .select('*')
       .eq('student_id', user.id)
-      .single()
+      .maybeSingle()
 
-    if (error && error.code !== 'PGRST116') throw error
+    if (error) throw error
 
     // If no progress exists, create initial grid
     if (!data) {
@@ -179,9 +179,62 @@ export class UnifiedApiClient {
       .from('math_grid_progress')
       .select('grid_state, total_correct_answers, total_attempts')
       .eq('student_id', studentId)
-      .single()
+      .maybeSingle()
 
     if (fetchError) throw fetchError
+    
+    // If no grid exists, create one first
+    if (!currentData) {
+      const initialGrid = this.createInitialGrid()
+      await this.supabase
+        .from('math_grid_progress')
+        .insert({
+          student_id: studentId,
+          grid_state: initialGrid,
+          guardrails_level: '1-9',
+          total_correct_answers: 0,
+          total_attempts: 0
+        })
+      
+      // Retry fetch
+      const { data: retryData, error: retryError } = await this.supabase
+        .from('math_grid_progress')
+        .select('grid_state, total_correct_answers, total_attempts')
+        .eq('student_id', studentId)
+        .maybeSingle()
+      
+      if (retryError || !retryData) throw retryError || new Error('Failed to create grid')
+      
+      // Use the newly created grid
+      const gridState = retryData.grid_state as MathGridCell[][]
+      let totalCorrect = retryData.total_correct_answers || 0
+      let totalAttempts = retryData.total_attempts || 0
+      
+      // Apply updates
+      gridUpdates.forEach(update => {
+        const row = update.multiplicand - 1
+        const col = update.multiplier - 1
+        if (row >= 0 && row < gridState.length && col >= 0 && col < gridState[row].length) {
+          gridState[row][col] = { ...gridState[row][col], ...update }
+          if (update.lastAttemptCorrect) totalCorrect++
+          totalAttempts++
+        }
+      })
+      
+      // Update in database
+      const { error: updateError } = await this.supabase
+        .from('math_grid_progress')
+        .update({
+          grid_state: gridState,
+          total_correct_answers: totalCorrect,
+          total_attempts: totalAttempts,
+          updated_at: new Date().toISOString()
+        })
+        .eq('student_id', studentId)
+      
+      if (updateError) throw updateError
+      return
+    }
 
     const gridState = currentData.grid_state as MathGridCell[][]
     let totalCorrect = currentData.total_correct_answers || 0
