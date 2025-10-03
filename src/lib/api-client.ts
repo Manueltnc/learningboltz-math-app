@@ -50,7 +50,7 @@ export class UnifiedApiClient {
         app_type: appType,
         session_type: metadata?.sessionType || 'practice',
         started_at: new Date().toISOString(),
-        status: 'in_progress',
+        status: 'active',
         total_items: metadata?.problems?.length || 0,
         metadata: metadata || {}
       })
@@ -322,7 +322,7 @@ export class UnifiedApiClient {
     if (completedPlacement) return 'placement_completed'
 
     const inProgressPlacement = sessions?.some(
-      s => s.session_type === 'placement' && s.status === 'in_progress'
+      s => s.session_type === 'placement' && s.status === 'active'
     )
 
     if (inProgressPlacement) return 'placement_in_progress'
