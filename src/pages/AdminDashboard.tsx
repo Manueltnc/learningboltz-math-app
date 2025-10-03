@@ -13,7 +13,6 @@ import {
   Clock, 
   TrendingUp, 
   LogOut,
-  Calendar,
   Filter
 } from 'lucide-react'
 import { createApiClient } from '@/lib/api-client'
@@ -125,8 +124,9 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
               <BarChart3 className="h-6 w-6 text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-primary">Admin Dashboard</h1>
-              <p className="text-muted-foreground">Welcome, {user?.user_metadata?.display_name || user?.email}</p>
+              <h1 className="text-2xl font-bold text-primary">Multiplication Wizard</h1>
+              <p className="text-muted-foreground italic">A Learning Boltz Experience</p>
+              <p className="text-sm text-muted-foreground">Admin Dashboard - Welcome, {user?.user_metadata?.display_name || user?.email}</p>
             </div>
           </div>
           <Button onClick={onLogout} variant="outline" size="sm">
