@@ -1,0 +1,17 @@
+# Ignore test files
+src/__tests__/
+**/*.test.ts
+**/*.test.tsx
+
+# Ignore documentation
+*.md
+!README.md
+
+# Ignore config files not needed for production
+.gitignore
+.eslintrc*
+tsconfig.node.json
+
+# Ignore supabase migrations (already deployed)
+supabase-migrations/
+
